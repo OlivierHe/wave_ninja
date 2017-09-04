@@ -1,0 +1,24 @@
+* Found bundle for host erddap.marine.ie: 0x9cf7cb0
+* Re-using existing connection! (#50) with host erddap.marine.ie
+* Connected to erddap.marine.ie (193.1.11.166) port 443 (#50)
+> GET /erddap/griddap/IMI_EATL_WAVE.largePng?swell_wave_height[(2017-09-04T21:00:00Z)][(47.1875):(47.7875)][(-3.7124999999999986):(-3.1125000000000007)]&.draw=surface&.vars=longitude%7Clatitude%7Cswell_wave_height&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff HTTP/1.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36
+Host: erddap.marine.ie
+Accept: */*
+
+< HTTP/1.1 200 
+* Server nginx/1.10.2 is not blacklisted
+< Server: nginx/1.10.2
+< Date: Wed, 30 Aug 2017 17:05:02 GMT
+< Content-Type: image/png
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Last-Modified: Wed, 30 Aug 2017 17:05:02 GMT
+< xdods-server: dods/3.7
+< erddap-server: 1.74
+< Content-Encoding: 
+< Strict-Transport-Security: max-age=63072000; includeSubdomains
+< X-Frame-Options: DENY
+< X-Content-Type-Options: nosniff
+< 
+* Connection #50 to host erddap.marine.ie left intact
