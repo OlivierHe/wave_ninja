@@ -4,12 +4,13 @@
  * Date: 29/08/2017
  * Time: 19:02
  */
-use App\Autoloader;
+use App\Router;
+use App\ImgGetter;
 
+require_once '../vendor/autoload.php';
 
-require '../App/Autoloader.php';
-Autoloader::register();
+//$router = new Router();
+//$router->callAction();
 
-phpinfo();
-//$test = new \App\ImgGetter();
-//$test->getImages();
+$test = new ImgGetter();
+echo $test->getImages();

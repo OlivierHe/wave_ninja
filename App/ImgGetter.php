@@ -7,11 +7,14 @@
 
 namespace App;
 
+use GuzzleHttp\Client;
+
+
 
 class ImgGetter
 {
     private $dateArray;
-    private $curlHandle;
+    private $clientGuzzle;
 
     public function __construct()
     {
@@ -21,42 +24,51 @@ class ImgGetter
     public function getImages()
     {
 
-        // on init le curl
-        $this->curlHandle = curl_init();
 
-        curl_setopt_array($this->curlHandle,array(
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_VERBOSE => 1,
-            CURLOPT_FOLLOWLOCATION => 1,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36'
-        ));
+        $this->clientGuzzle = new Client(['base_uri' => 'https://erddap.marine.ie/erddap/griddap/']);
+        $path = "../Public/img/surf_prev/";
+        $todayRaw = $this->dateArray->currentPastDate->format("Y-m-d\TH:i:s\Z");
+        $today = mb_ereg_replace("(:)", '_', $todayRaw);
+        $todayFile =  $path . $today . ".png";
 
-        $path = "../Public/img/";
+        echo 'Today file is '.$todayFile.'<br>';
+        if (file_exists($todayFile)) {
+
+            //     echo 'past Date = '.$pasteDate.'<br>';
+//            $todayDate = date('Y-m-d H:00:00',strtotime('+2 hours'));
+//            $zozo = \DateTime::createFromFormat('Y-m-d H:i:s', $todayDate);
+//            $goza = $zozo->format("Y-m-d\TH:i:s\Z");
+//            echo 'today datetime is '.$goza.'<br>';
+//            echo 'today is '.$todayDate.'<br>';
+
+
+            $existingFile = date("Y-m-d\TH:00:00\Z", filemtime($todayFile));
+            //$todayStripped = substr($today, 0, -10);
+            echo 'Existing file is ' . $existingFile . '<br>';
+            echo 'Today is ' . $todayRaw . '<br>';
+            if ($existingFile == $todayRaw) {
+                return 'uptodate';
+            }
+        }
 
         foreach ($this->dateArray->getDates() as $date) {
             $imgRawName = $date->format("Y-m-d\TH:i:s\Z");
             $imgName = mb_ereg_replace("(:)", '_', $imgRawName);
             $img = $path . $imgName . ".png";
-
-            $this->download_image("https://erddap.marine.ie/erddap/griddap/IMI_EATL_WAVE.largePng?swell_wave_height[(" . $imgRawName . ")][(47.1875):(47.7875)][(-3.7124999999999986):(-3.1125000000000007)]&.draw=surface&.vars=longitude%7Clatitude%7Cswell_wave_height&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff", $img);
+            $this->download_image("IMI_EATL_WAVE.largePng?swell_wave_height[(" . $imgRawName . ")][(47.1875):(47.7875)][(-3.7124999999999986):(-3.1125000000000007)]&.draw=surface&.vars=longitude%7Clatitude%7Cswell_wave_height&.colorBar=%7C%7C%7C%7C%7C&.bgColor=0xffccccff", $img);
         }
-
-        curl_close($this->curlHandle);
-
-
+        return 'updated';
     }
 
     private function download_image($image_url, $image_file){
-        ini_set('max_execution_time', 0);
-        $curl_log = fopen("log_con.txt", 'w+'); // log file
+        //ini_set('max_execution_time', 0);
         $fp = fopen ($image_file, 'wb');// open file handle
-        curl_setopt($this->curlHandle,CURLOPT_STDERR, $curl_log);
-        curl_setopt($this->curlHandle, CURLOPT_FILE, $fp);// output to file
-        curl_setopt($this->curlHandle, CURLOPT_TIMEOUT_MS, 300000);
-        curl_setopt($this->curlHandle, CURLOPT_URL, $image_url);
-        curl_exec($this->curlHandle);
+        $this->clientGuzzle->get($image_url,['sink' => $fp, 'verify' => false]);
+
+        if(is_resource($fp)) {
         fclose($fp);
+        }
+
     }
 
 }
