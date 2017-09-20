@@ -1,5 +1,6 @@
 /App/Config/*
 /build/
+/Public/img/
 /phpunit.xml
 /var/*
 !/var/cache
