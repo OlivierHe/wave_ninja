@@ -23,6 +23,14 @@ $http_host = $config->http_host;
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
     <style type="text/css">
+        body {
+            background-image: linear-gradient(to bottom,#e0f2f1 0,#2196f3 100%);
+            /* fix bg */
+            height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
         .section {
             padding-top: 0;
             min-height: 700px;
@@ -83,7 +91,7 @@ $http_host = $config->http_host;
 <img class="responsive-img" src="http://<?= $http_host ?>/wave_ninja/img/header_surf.jpg">
 <nav class="blue" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="http://<?= $http_host ?>/wave_ninja/home" class="brand-logo">WaveNinja</a>
+        <a id="logo-container" href="http://<?= $http_host ?>/wave_ninja/home" class="brand-logo">Wave Ninja</a>
         <ul class="right hide-on-med-and-down">
             <li><a href="http://<?= $http_host ?>/wave_ninja/home"><i class="small material-icons left orange-text text-lighten-3">home</i>Accueil</a></li>
         </ul>

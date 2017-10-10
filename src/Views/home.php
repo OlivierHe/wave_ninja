@@ -24,8 +24,8 @@
                                 </select>
                                 <label>Entrez l\'heure</label>
                               </div>
-                                <a class="btn-large waves-effect waves-light green" id="nextimg"><i class="material-icons">add_to_photos</i></a>
-                                <a class="btn-large waves-effect waves-light  orange darken-3" id="animateimg"><i class="material-icons">ondemand_video</i></a>
+                                <a class="btn-large waves-effect waves-light green tooltipped" id="nextimg" data-position="bottom" data-delay="50" data-tooltip="Prévision suivante"><i class="material-icons">skip_next</i></a>
+                                <a class="btn-large waves-effect waves-light  orange darken-3 tooltipped" id="animateimg" data-position="bottom" data-delay="50" data-tooltip="Animation des prévisions, cliquez pour arrêter"><i class="material-icons">ondemand_video</i></a>
                             </div>
                             <div class="col s12 m12 l9">
                               <img class="responsive-img" id="previmg" src="http://'.$http_host.'/wave_ninja/img/surf_prev/mean_wave_direction/'.$data[2].'.png">

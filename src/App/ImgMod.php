@@ -31,7 +31,7 @@ class ImgMod
         $text = $typeFr . "\n" . $time;
      
         $draw->setFont("fonts/Arial.ttf");
-        $imagick->annotateimage($draw, 48, 754, 1, $text);
+        $imagick->annotateimage($draw, 48, 754, 360, $text);
         $imagick->writeImage(realpath($image_file));
         return 'done annotation';
     }

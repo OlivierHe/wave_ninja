@@ -34,8 +34,7 @@ $(document).ready(function () {
    }
 
   $selIndex = 0;
-  $animRun = true;
-  $anim = 'blob';
+
 
   $.each($b, function (i, item) {
     // va récuperer la valeur de l'heure actuelle dans l'index;
@@ -52,6 +51,26 @@ $(document).ready(function () {
   $('select').material_select();
   }
 
+  function animToggleRun() {
+        // toggle animation
+       if ($animRun) {
+          $anim = setInterval(function(){
+                $("#heureprev > option:selected")
+                    .prop("selected", false)
+                    .next()
+                    .prop("selected", true);
+
+               $('select').material_select();
+               urlPrev(); 
+              }, 500);
+          $animRun = false;
+         } else {
+          clearInterval($anim);
+          $animRun = true;
+        }    
+  }
+
+  // début du js
   $('.datepicker').pickadate({
     selectMonths: false, // Creates a dropdown to control month
     selectYears: false, // Creates a dropdown of 110 years to control year
@@ -66,10 +85,13 @@ $(document).ready(function () {
     formatSubmit: 'yyyy-mm-dd',
     close: 'Fermer',
     clear: false,
-    format: 'ddd dd mmmm yyyy'
+    format: 'ddd. dd mmmm yyyy'
   });
 
  $('select').material_select();
+ $('.tooltipped').tooltip({delay: 50});
+
+  $animRun = true;
 
   getPrevRange();
   urlPrev();
@@ -100,22 +122,7 @@ $(document).ready(function () {
 
 
   $('#animateimg').click( function() {
-    // toggle animation
-       if ($animRun) {
-          $anim = setInterval(function(){
-                $("#heureprev > option:selected")
-                    .prop("selected", false)
-                    .next()
-                    .prop("selected", true);
-
-               $('select').material_select();
-               urlPrev(); 
-              }, 500);
-          $animRun = false;
-         } else {
-          clearInterval($anim);
-          $animRun = true;
-        }    
+    animToggleRun();
   });
 
 });

@@ -12,5 +12,4 @@ require_once '../../vendor/autoload.php';
 $router = new Router();
 $router->callAction();
 
-//$test = new ImgGetter();
-//echo $test->getImages();
+
