@@ -1,9 +1,8 @@
-/src/App/Config/*
 /build/
 /src/Public/img/surf_prev/tmp/
-/src/Public/img/surf_prev/mean_wave_direction/
-/src/Public/img/surf_prev/significant_wave_height/
-/src/Public/img/surf_prev/swell_wave_height/
+/src/Public/img/surf_prev/mean_wave_direction/*
+/src/Public/img/surf_prev/significant_wave_height/*
+/src/Public/img/surf_prev/swell_wave_height/*
 /phpunit.xml
 /var/*
 !/var/cache
