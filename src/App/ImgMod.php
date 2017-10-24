@@ -29,8 +29,8 @@ class ImgMod
 
         $time = ucfirst(strftime("%A %d/%m/%G à %H:%M", $timeStamp->getTimeStamp()));
         $text = $typeFr . "\n" . $time;
-     
-        $draw->setFont("fonts/Arial.ttf");
+         // sous windows fonts/arial.ttf
+        $draw->setFont("../Public/fonts/arial.ttf");
         $imagick->annotateimage($draw, 48, 754, 360, $text);
         $imagick->writeImage(realpath($image_file));
         return 'done annotation';
@@ -48,7 +48,8 @@ class ImgMod
      
         $imagick->resetIterator();
         $morphed = $imagick->morphImages(2);
-       
-        $morphed->writeImages((realpath('../Public/img/surf_prev/' .$type. '/')) .'\m.png', 1);
+        
+       /* .\m.png sous windows */
+        $morphed->writeImages((realpath('../Public/img/surf_prev/' .$type. '/')) .'/m.png', 1);
     }
 }

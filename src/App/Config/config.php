@@ -7,6 +7,6 @@
  */
 
 return [
-    'http_host' => 'localhost'
+    'http_host' => '93.118.34.67'
 ];
 

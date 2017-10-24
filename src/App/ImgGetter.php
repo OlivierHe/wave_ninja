@@ -61,7 +61,6 @@ class ImgGetter
             $this->imgMod->morphImages($this->pathScanner('tmp/'. $type[0]), $type[0]);
 
             $mImages = array_slice($this->pathScanner($type[0]),3);
-          
             foreach( $this->dateArray->getDates('PT1H') as $key => $date ){
                 // limitation de l'intervale =P car l'interpolation boucle la fin et le début.
                 if ($key === 118) {
